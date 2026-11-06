@@ -33,6 +33,9 @@ permissions:
   - action: web_reader_*
     resource: "*"
     effect: allow
+  - action: skill
+    resource: "grilling"
+    effect: allow
   - action: addfeat_gate
     resource: "*"
     effect: allow
@@ -77,7 +80,10 @@ permissions:
 
 ## 工作流（严格按序，每一步都通过 addfeat_gate 推进）
 
-1. **澄清（grill-me 质询纪律；此阶段不创建任务）**：先读规则与代码（read/glob/grep），再按以下纪律质询用户，直到目标、范围、非目标、边界、失败行为、数据影响与验收方式足够清楚：
+1. **澄清（质询式；此阶段不创建任务）**：先读规则与代码（read/glob/grep）。**优先调用 `skill({id:"grilling"})` 加载质询方法论**；加载失败（无该 skill 或权限拒绝）时不要中止，改用下面的内置协议——它是 grilling 的精简版，步骤完整可独立执行。
+   - **grilling 可用时**：按其「设计树 + frontier」在内部组织待决问题；**但本工作流只每轮抛出一个问题**（grilling 默认一轮抛整个 frontier，此处以 add-feat 节奏为准）。答完一个立即重算 frontier，再问下一个。
+   - **grilling 不可用时（内置协议）**：把需求拆成决策树（目标/范围/非目标/边界/失败行为/数据影响/验收方式），只从"前置决策已定"的问题里挑一个问；每答一个重新评估哪些问题被解锁。
+   - **事实自己查，决策交给用户**：需要文件、代码、契约、官方文档等事实时，用 read/glob/grep/webfetch/websearch 自己查；**不要为查事实启动 subagent**——本协调者只能启动受阶段闸门约束的四个工作流角色。查不到的才问用户。
    - 一次只问一个问题，不一次抛出整份问卷。
    - 每问附推荐答案或默认选项，并解释关键取舍；用户可以纠正。
    - 能由现有代码、契约或设计确定的问题，先查证，不重复问人。

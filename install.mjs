@@ -74,6 +74,15 @@ await installFile(join(REPO, "add-feat-model.mjs"), join(CONFIG, "add-feat-model
 console.log("== 安装 add-feat.json ==")
 await installFile(join(REPO, "defaults/add-feat.json"), join(CONFIG, "add-feat.json"), { overwrite: false })
 
+const grillingPaths = [
+  join(homedir(), ".agents/skills/grilling/SKILL.md"),
+  join(CONFIG, "skills/grilling/SKILL.md"),
+]
+if (!(await exists(grillingPaths[0])) && !(await exists(grillingPaths[1]))) {
+  console.log("\n提示：未检测到 grilling skill（可选增强）。协调者会自动降级为内置质询协议，不影响使用；")
+  console.log("如需完整质询方法论，可安装 grilling skill 后重启。")
+}
+
 console.log(`\n完成：写入 ${written}，跳过 ${skipped}。`)
 console.log("若 OpenCode 正在运行，请执行：opencode service restart")
 console.log(`验证：新会话执行 /add-feat 你好；模型切换：node ${join(CONFIG, "add-feat-model.mjs")} show`)

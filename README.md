@@ -20,6 +20,7 @@ OpenCode V2 插件：在普通会话内提供 subagent 多模型开发工作流�
 - OpenCode V2（基于 2.2.1 验证），终端可用 `opencode` 命令；
 - 在 **git 仓库**内使用（改动核验依赖 git）；
 - Node ≥ 20（安装脚本与模型切换 CLI 需要）；运行插件测试需要 [bun](https://bun.sh)；
+- 可选增强：若本机有 `grilling` skill，协调者的澄清阶段会自动加载它（设计树 + frontier）；没有也能用，会走内置的精简质询协议；
 - 协调者/审计者默认模型为 `openai/gpt-6.1-sol`、`openai/gpt-6.1-terra`，开发/修复为 `zhipuai-coding-plan/glm-5.3(-flash)`。**没有对应套餐没关系，装完用 `add-feat-model` 一条命令换成你有的模型**（见下文）。
 
 ### 1. 安装插件本体
