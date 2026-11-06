@@ -1,0 +1,43 @@
+{
+  "name": "add-feat",
+  "version": "0.1.0",
+  "description": "OpenCode V2 插件：subagent 多模型开发工作流（澄清→计划→人工确认→开发→独立审计→修复→验收），强制闸门在插件层",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "bin": {
+    "add-feat": "./install.mjs",
+    "add-feat-model": "./add-feat-model.mjs"
+  },
+  "scripts": {
+    "test": "bun test",
+    "install-agents": "node install.mjs",
+    "model": "node add-feat-model.mjs"
+  },
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "workflow",
+    "tdd",
+    "audit"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@opencode/plugin": "^2.2.1"
+  },
+  "files": [
+    "src",
+    "test",
+    "docs",
+    "agents",
+    "commands",
+    "defaults",
+    "add-feat-model.mjs",
+    "install.mjs",
+    "README.md"
+  ]
+}

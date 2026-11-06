@@ -1,0 +1,11 @@
+# OpenCode 配置与状态（不进仓库）
+node_modules/
+bun.lock
+*.log
+
+# 任务状态与本地覆盖（如果有人在本仓库内跑 add-feat 测试产生的）
+.add-feat/
+
+# 系统文件
+.DS_Store
+Thumbs.db
